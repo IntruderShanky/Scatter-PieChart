@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -107,8 +108,6 @@ public class SimpleChart extends View {
                     else
                         textPaint.setColor(textColor);
 
-                    // Log.d("COLOR",textPaint.getColor()+"");
-
                     if (animateValue <= chartUtils.get(i).getRadius()) {
                         canvas.drawCircle(cx, cy, animateValue, paint);
                         if (i == chartData.size() - 1 && animateValue == chartUtils.get(i).getRadius())
@@ -135,6 +134,9 @@ public class SimpleChart extends View {
         return path;
     }
 
+    /**
+     * To animate the chart
+     */
     public void animateChart() {
         animateValue = 0;
         ValueAnimator animator = ValueAnimator.ofFloat(0, chartUtils.get(chartData.size() - 1).getRadius());
@@ -150,35 +152,47 @@ public class SimpleChart extends View {
         animator.start();
     }
 
-    public List<ChartData> getChartData() {
-        return chartData;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setChartData(List<ChartData> chartData) {
+    /**
+     * To set the data on chart, if chart data is null than chart will not be displayed
+     * @param chartData Array list of {@link ChartData}
+     */
+    public void setChartData(@NonNull List<ChartData> chartData) {
         this.chartData = chartData;
         animateValue = -1;
         invalidate();
     }
 
+    /**
+     *
+     * @param color if background color is not provided in {@link ChartData} than the chart will be drawn with the shade of given color
+     */
     public void setChartColor(int color) {
         this.color = color;
         invalidate();
     }
 
+    /**
+     *
+     * @param color if text color is not provided in {@link ChartData} than the text will be drawn with the given color
+     */
     public void setTextColor(int color) {
         this.textColor = color;
         invalidate();
     }
 
+    /**
+     *
+     * @param typeFace to set the typeface on the displayText
+     */
     public void setTextTypeFace(Typeface typeFace) {
         textPaint.setTypeface(typeFace);
         invalidate();
     }
 
+    /**
+     * This property will define the partitions width (equal or acc. to percent)
+     * @param withPercent
+     */
     public void partitionWithPercent(boolean withPercent) {
         this.withPercent = withPercent;
         if (withPercent)
@@ -186,5 +200,22 @@ public class SimpleChart extends View {
         else chartUtils = ChartHelper.generateSimpleRadius(chartData, (int) side);
         animateValue = -1;
         invalidate();
+    }
+
+    /**
+     *
+     * @param aboutChart about the chart will display on centre of the chart
+     *                   (This should be in single word for better representation)
+     */
+    public void setAboutChart(String aboutChart) {
+        this.aboutChart = aboutChart;
+    }
+
+    /**
+     *
+     * @param aboutTextColor textcolor for aboutChart
+     */
+    public void setAboutTextColor(int aboutTextColor) {
+        this.aboutTextColor = aboutTextColor;
     }
 }

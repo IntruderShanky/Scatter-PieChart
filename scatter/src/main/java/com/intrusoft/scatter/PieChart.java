@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -15,8 +16,11 @@ import android.view.animation.LinearInterpolator;
 
 import java.util.List;
 
-public class PieChart extends View {
 
+/**
+ * {@link PieChart} is a circular statistical graphic, which is divided into slices to illustrate numerical proportion
+ */
+public class PieChart extends View {
 
     private List<ChartData> chartData;
     private List<ChartUtils> chartUtils;
@@ -103,7 +107,7 @@ public class PieChart extends View {
 
             alpha = 255 / chartData.size();
             textPaint.setTextSize(textSize);
-        } else Log.e(LOGCAT, "Simple Pie chart must have chart Data");
+        } else Log.e(LOGCAT, "Pie chart must have chart Data");
     }
 
     @Override
@@ -137,12 +141,10 @@ public class PieChart extends View {
                             if (withPercent)
                                 per = chartUtils.get(i).getRadius() - (chartData.get(i).getPartInPercent() * 1.8f);
                             else
-                                // per = chartUtils.get(i).getRadius() - ((360 / chartData.size()) / 2);
                                 per = chartUtils.get(i).getRadius() - (100 / chartData.size() * 1.8f);
                             double rad = per * Math.PI / 180d;
                             int x = (int) (cx + (r * 0.7 * Math.cos(rad)));
                             int y = (int) (cy + (r * 0.7 * Math.sin(rad)));
-                            Log.d("x: " + x + " ,y: " + per, "i: " + i + " ->" + chartUtils.get(i).getRadius());
                             canvas.drawText(chartData.get(i).getDisplayText(), x, y, textPaint);
                         }
                     } else {
@@ -155,7 +157,6 @@ public class PieChart extends View {
                         double rad = per * Math.PI / 180d;
                         int x = (int) (cx + (r * 0.7 * Math.cos(rad)));
                         int y = (int) (cy + (r * 0.7 * Math.sin(rad)));
-                        Log.d("x: " + x + " ,y: " + per, "i: " + i + " ->" + chartUtils.get(i).getRadius());
                         canvas.drawText(chartData.get(i).getDisplayText(), x, y, textPaint);
                     }
                     paint.setColor(Color.argb(88, Color.red(centerColor), Color.green(centerColor), Color.blue(centerColor)));
@@ -173,6 +174,9 @@ public class PieChart extends View {
         }
     }
 
+    /**
+     * To animate the chart
+     */
     public void animateChart() {
         animateValue = 0;
         if (chartUtils != null) {
@@ -190,27 +194,47 @@ public class PieChart extends View {
         }
     }
 
-    public void setChartData(List<ChartData> chartData) {
+    /**
+     * To set the data on chart, if chart data is null than chart will not be displayed
+     * @param chartData Array list of {@link ChartData}
+     */
+    public void setChartData(@NonNull List<ChartData> chartData) {
         this.chartData = chartData;
         animateValue = -1;
         invalidate();
     }
 
+    /**
+     *
+     * @param color if background color is not provided in {@link ChartData} than the chart will be drawn with the shade of given color
+     */
     public void setChartColor(int color) {
         this.color = color;
         invalidate();
     }
 
+    /**
+     *
+     * @param color if text color is not provided in {@link ChartData} than the text will be drawn with the given color
+     */
     public void setTextColor(int color) {
         this.textColor = color;
         invalidate();
     }
 
+    /**
+     *
+     * @param typeFace to set the typeface on the displayText
+     */
     public void setTextTypeFace(Typeface typeFace) {
         textPaint.setTypeface(typeFace);
         invalidate();
     }
 
+    /**
+     * This property will define the partitions width (equal or acc. to percent)
+     * @param withPercent
+     */
     public void partitionWithPercent(boolean withPercent) {
         this.withPercent = withPercent;
         if (withPercent) chartUtils = ChartHelper.generateArcWithPercent(chartData);
@@ -219,12 +243,36 @@ public class PieChart extends View {
         invalidate();
     }
 
+    /**
+     *
+     * @param color is the color of center circle
+     */
     public void setCenterCircleColor(int color) {
         this.centerColor = color;
     }
 
+    /**
+     *
+     * @param aboutChart about the chart will display on centre of the chart
+     *                   (This should be in single word for better representation)
+     */
     public void setAboutChart(String aboutChart) {
         this.aboutChart = aboutChart;
     }
 
+    /**
+     *
+     * @param aboutTextSize textsize for aboutChart
+     */
+    public void setAboutTextSize(float aboutTextSize) {
+        this.aboutTextSize = aboutTextSize;
+    }
+
+    /**
+     *
+     * @param aboutTextColor textcolor for aboutChart
+     */
+    public void setAboutTextColor(int aboutTextColor) {
+        this.aboutTextColor = aboutTextColor;
+    }
 }

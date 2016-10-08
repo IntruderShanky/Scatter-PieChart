@@ -1,7 +1,7 @@
 package com.intrusoft.scatter;
 
 /**
- * Created by apple on 10/7/16.
+ * {@link ChartData} will provide the data to chart
  */
 
 public class ChartData implements Comparable<ChartData> {
@@ -11,17 +11,35 @@ public class ChartData implements Comparable<ChartData> {
     private int textColor;
     private float partInPercent;
 
+    /**
+     *
+     * @param displayText text will display on chart
+     * @param partInPercent partition of chart in percent
+     */
     public ChartData(String displayText, float partInPercent) {
         this.displayText = displayText;
         this.partInPercent = partInPercent;
     }
 
+    /**
+     *
+     * @param displayText text will display on chart
+     * @param partInPercent partition of chart in percent
+     * @param textColor color of displayText
+     */
     public ChartData(String displayText, float partInPercent, int textColor) {
         this.displayText = displayText;
         this.textColor = textColor;
         this.partInPercent = partInPercent;
     }
 
+    /**
+     *
+     * @param displayText text will display on chart
+     * @param partInPercent partition of chart in percent
+     * @param textColor color of displayText
+     * @param backgroundColor background color of that particular partition
+     */
     public ChartData(String displayText, float partInPercent, int textColor, int backgroundColor) {
         this.displayText = displayText;
         this.backgroundColor = backgroundColor;

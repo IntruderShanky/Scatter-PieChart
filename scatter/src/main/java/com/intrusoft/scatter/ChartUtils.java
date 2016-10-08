@@ -1,7 +1,9 @@
 package com.intrusoft.scatter;
 
+
 /**
- * Created by apple on 10/6/16.
+ * @author Intruder Shanky
+ * @since october 2016
  */
 
 public class ChartUtils implements Comparable<ChartUtils> {
