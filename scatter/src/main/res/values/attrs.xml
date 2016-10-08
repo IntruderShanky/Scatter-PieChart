@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PieChart">
+        <attr name="textColor" format="color" />
+        <attr name="chartColor" format="color" />
+        <attr name="centerColor" format="color" />
+        <attr name="aboutChart" format="string" />
+        <attr name="aboutTextColor" format="color" />
+        <attr name="aboutTextSize" format="float" />
+        <attr name="textSize" format="float" />
+        <attr name="equalPartition" format="boolean" />
+    </declare-styleable>
+</resources>
