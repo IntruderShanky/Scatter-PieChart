@@ -3,7 +3,14 @@ Easy and simple implementation of PieChart with Scatter
 
 ### Specs
 [![](https://jitpack.io/v/IntruderShanky/scatter-piechart.svg)](https://jitpack.io/#IntruderShanky/scatter-piechart)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Scatter--PieChart-blue.svg?style=flat)](http://android-arsenal.com/details/1/4492)
+[![API](https://img.shields.io/badge/API-11%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=11)
 [![Scatter Demo](youtubeIcon.png)](http://www.youtube.com/watch?v=qqUe7pjnHyw)
+
+[Demo App - IS Library](https://play.google.com/store/apps/details?id=com.intrusoft.islibrarydemo)
+
+<a href='https://play.google.com/store/apps/details?id=com.intrusoft.islibrarydemo&utm_source=global_co&utm_small=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="193" height="75"/></a>
+
 
 ### Graphic
 ![Screenshot](graphic1.jpg)
